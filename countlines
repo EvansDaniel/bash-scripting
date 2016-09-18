@@ -1,0 +1,8 @@
+#!/bin/sh
+cd $2
+tl="$(git ls-files | xargs cat | wc -l)"
+ll="$(git ls-files | grep $1 | xargs cat | wc -l)"
+RESULT=$(echo "scale=2; $ll/$tl" | bc -l)
+percent=$(echo "$RESULT * 100" | bc -l)
+echo "$ll $1 lines; $percent percent of repo"
+
