@@ -2,6 +2,9 @@
 
 #!/bin/bash
 
+# used to automatically prepend a header for all hw files in my
+# ~/sketchbook/d$1 directory
+
 cd ~/sketchbook/d$1/
 
 echo ~/sketchbook/d$1/

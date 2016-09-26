@@ -1,8 +1,7 @@
 #!/bin/bash
 
-276mv:
-
-#!/bin/bash
+# Used to move all web exports from all sketches 
+# in the ~/sketcbook/$1/ from my sketches to my university's server
 
 # $1 is usually d4, d5, etc.
 cd ~/sketchbook/$1
