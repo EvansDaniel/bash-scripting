@@ -1,0 +1,14 @@
+#!/bin/bash
+
+276mv:
+
+#!/bin/bash
+
+# $1 is usually d4, d5, etc.
+cd ~/sketchbook/$1
+
+# loops through the directories in ~/sketchbook/$1
+# mvs the web-export from each $d into the html directory
+for d in */; do
+ mv "$d"web-export/ ../../html/cs276/$1/$d
+done

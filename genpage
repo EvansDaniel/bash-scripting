@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#!/bin/bash
+
+# given the daily's number and all the names of the sketches (ex: 7_21)
+# prints out the page for the wiki 
+
+# IMPORTANT: 1st arg in array must be the daily's number i.e. 4, rest of elements are name of 
+# sketches
+array=( "$@" )
+arraylength=${#array[@]}
+
+echo "Daniel Evans CS276 Daily #${array[0]}"
+
+for (( i=2; i<${arraylength}+1; i++ ));
+do
+    currSketch=${array[$i-1]}
+    echo  -e "  Sketch $currSketch
+
+  * {{:cs276:a16:$currSketch.png?200|}}
+  * [[http://hive.sewanee.edu/evansdb0/cs276/d${array[0]}/sketch_$currSketch/]] \n"
+done

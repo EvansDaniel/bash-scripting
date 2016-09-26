@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#!/bin/bash
+
+cd ~/sketchbook/d$1/
+
+echo ~/sketchbook/d$1/
+
+# prepends $2 (the heading of the file) to the $d${d///}.pde in each $d
+# example output of weird syntax: sketch_21_05/sketch_21_05.pde
+
+# 276prepend d4 "// Daniel Evans\n// CS276 Daily 4\n// Sept. 25 2016"
+dte=$(date)
+for d in */; do
+ echo -e "// Daniel Evans\n// CS276 Daily $1\n// $dte"
+ prepend "$2" $d${d///}.pde
+done

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# append string ($1) to otherfile w/ temp file
+echo -e $1 > temp1
+mv $2 temp2
+cat temp1 temp2 > $2
+rm temp2 temp1
