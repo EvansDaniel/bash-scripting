@@ -1,7 +1,15 @@
+
 #!/bin/bash
 
 # Used to move all web exports from all sketches 
 # in the ~/sketcbook/$1/ from my sketches to my university's server
+cd
+moveToDir=~/html/cs276/$1;
+
+# make move to dir if not exists
+if [ ! -d $moveToDir ]; then
+  mkdir $moveToDir
+fi
 
 # $1 is usually d4, d5, etc.
 cd ~/sketchbook/$1
@@ -9,5 +17,6 @@ cd ~/sketchbook/$1
 # loops through the directories in ~/sketchbook/$1
 # mvs the web-export from each $d into the html directory
 for d in */; do
- mv "$d"web-export/ ../../html/cs276/$1/$d
+ echo $moveToDir/$d
+ cp -r "$d"web-export/ $moveToDir/$d
 done
