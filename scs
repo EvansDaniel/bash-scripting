@@ -1,0 +1,24 @@
+#!/bin/bash
+
+printf "Checking for installation of composer "
+composer about
+COMPOSER_RET_STATUS=$?
+if [ $COMPOSER_RET_STATUS -eq 0 ]
+then
+  printf "Yes."
+else
+  printf "No.\nYou need to install composer from https://getcomposer.org/download/ or put composer in your path\n\n"
+  exit 1
+fi
+
+git clone https://github.com/EvansDaniel/SCS
+cd SCS
+composer install
+mv .env.example .env
+php artisan key:generate
+printf "\n\nINSTRUCTIONS TO CHECK SETUP:\n\n"
+printf "Open a browser and type in \"localhost:8000\"\n"
+printf "You should see a white screen that says Laravel.\n\n"
+printf "If that worked, we will need to configure mysql to work with"
+printf " Laravel\nand setup the .env file\n\n"
+php artisan serve
