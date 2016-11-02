@@ -4,19 +4,40 @@
 # Used to move all web exports from all sketches 
 # in the ~/sketcbook/$1/ from my sketches to my university's server
 cd
-moveToDir=~/html/cs276/$1;
+
+if [ -z "$1" ]; then 
+  echo "this function requires an arg representing the homework folder"
+  exit 1
+fi
+
+HOMEWORK_FOLDER=$1
+moveToDir=~/html/cs276/$HOMEWORK_FOLDER;
+
+check_status() {
+  if [ -z "$1" ]; then
+    echo No arg passed in $0
+    exit
+  fi
+  if [ $1 -ne 0 ];then
+    echo "Either there is no $moveToDir in existence or
+          there is no ~/sketchbook/$HOMEWORK_FOLDER"
+    exit
+  fi
+}
 
 # make move to dir if not exists
 if [ ! -d $moveToDir ]; then
   mkdir $moveToDir
+  check_status $?
 fi
 
-# $1 is usually d4, d5, etc.
-cd ~/sketchbook/$1
+cd ~/sketchbook/$HOMEWORK_FOLDER
 
-# loops through the directories in ~/sketchbook/$1
-# mvs the web-export from each $d into the html directory
-for d in */; do
- echo $moveToDir/$d
- cp -r "$d"web-export/ $moveToDir/$d
+check_status $?
+
+# loops through the directories in ~/sketchbook/$HOMEWORK_FOLDER
+# mvs the web-export from each $sketchFolder into the html directory
+for sketchFolder in */; do
+ echo $moveToDir/$sketchFolder
+ cp -r "$sketchFolder"web-export/ $moveToDir/$sketchFolder
 done

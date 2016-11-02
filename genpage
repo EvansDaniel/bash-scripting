@@ -3,21 +3,29 @@
 # auto-generates content of web page needed for homework, 
 # rather than manually typing it
 
-# given the daily's number and all the names of the sketches (ex: 7_21)
-# prints out the page for the wiki 
-
-# IMPORTANT: 1st arg in array must be the daily's number i.e. 4, rest of elements are name of 
-# sketches
 array=( "$@" )
 arraylength=${#array[@]}
 
-echo "Daniel Evans CS276 Daily #${array[0]}"
+if [ $arraylength -eq 0 ]; then
+  echo "array[0] must be hw folder name, rest of array is sketch folder file names"
+  exit 1
+fi
+
+# homework name and directory
+HOMEWORK_NAME=${array[0]}
+
+echo "Daniel Evans CS276 $HOMEWORK_NAME" >> output.txt
 
 for (( i=2; i<${arraylength}+1; i++ ));
 do
-    currSketch=${array[$i-1]}
-    echo  -e "  Sketch $currSketch
+    sketchName=${array[$i-1]}
+    echo  -e "  $sketchName
 
-  * {{:cs276:a16:$currSketch.png?200|}}
-  * [[http://hive.sewanee.edu/evansdb0/cs276/d${array[0]}/sketch_$currSketch/]] \n"
+  * {{:cs276:a16:$sketchName.png?200|}}
+  * [[http://hive.sewanee.edu/evansdb0/cs276/$HOMEWORK_NAME/$sketchName/]] \n" >> output.txt
 done
+
+gedit output.txt
+rm output.txt
+
+

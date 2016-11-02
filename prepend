@@ -1,7 +1,34 @@
 #!/bin/bash
 
+check_status() {
+  if [ -z "$1" ]; then
+    echo No arg passed in $0. Exiting...
+    exit
+  fi
+  if [ $1 -ne 0 ];then
+    # remove temp files
+    rm temp1 temp2
+    exit
+  fi
+}
+
+
 # append string ($1) to otherfile w/ temp file
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "function requires string to append and file to append to as args"
+  exit 1
+fi
+
+STRING_TO_APPEND=$1
+FILE_APPENDING_TO=$2
+
+touch temp1 temp2
+# move string to append to temp1
 echo -e $1 > temp1
+# move contents of $2 file to temp2
 mv $2 temp2
+# check status b/c $2 might not exist
+check_status $?
+# put temp1 contents before temp2
 cat temp1 temp2 > $2
 rm temp2 temp1

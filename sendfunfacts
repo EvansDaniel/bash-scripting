@@ -1,0 +1,12 @@
+#!/bin/sh
+(
+echo "To: emailaddress";
+echo "Subject: Your daily fun facts";
+echo "Content-Type: text/html";
+printf "<html><br>"
+echo $(java ParseCalendar $(calendar))
+printf "<br></html>"
+echo;
+) | /usr/sbin/sendmail -t
+echo "Mail Sent"
+

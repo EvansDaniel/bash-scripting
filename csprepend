@@ -1,18 +1,30 @@
 #!/bin/bash
 
-#!/bin/bash
+check_status() {
+  if [ -z "$1" ]; then
+    echo No arg passed in $0
+    exit
+  fi
+  if [ $1 -ne 0 ];then
+    exit
+  fi
+}
+
 
 # used to automatically prepend a header for all hw files in my
 # ~/sketchbook/d$1 directory
 
-cd ~/sketchbook/d$1/
+HOMEWORK_FOLDER=$1
 
-echo ~/sketchbook/d$1/
+cd ~/sketchbook/$HOMEWORK_FOLDER
+
+check_status $?
+
+echo ~/sketchbook/$HOMEWORK_FOLDER
 
 # prepends $2 (the heading of the file) to the $d${d///}.pde in each $d
 # example output of weird syntax: sketch_21_05/sketch_21_05.pde
 
-# 276prepend d4 "// Daniel Evans\n// CS276 Daily 4\n// Sept. 25 2016"
 dte=$(date)
 for d in */; do
  echo -e "// Daniel Evans\n// CS276 Daily $1\n// $dte"
