@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in Master Front Surround Center LFE Side Front; do
+    amixer -c 0 set "$i" playback unmute # unmute sound 
+    amixer set "$i" $1 # set sound volume
+done &>/dev/null
+
+# &>/dev/null sends output to /dev/null (Instead of printing it)
