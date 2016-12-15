@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ~/Apps/Alarm-Clock/build
+printf "\nDon't forget to check the sound cord\n\n"
+sound 100
+java AlarmClock
