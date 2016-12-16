@@ -11,6 +11,9 @@ if [ -z "$1" ];then
   exit 2
 fi
 
+# head gets the first part of a filename from first line(b/c of -1)
+# also note that head counts in reverse, so -1 is first file name, -2 is second
+# cut takes the first field after splitting input on / 
 DIR_NAME=`tar -tzf $1 | head -1 | cut -f1 -d"/"`
 echo $DIR_NAME
 tar xvfz $1
