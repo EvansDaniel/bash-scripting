@@ -1,0 +1,17 @@
+#!/bin/bash
+
+IMAGE_DIR=$1
+SIZE=$2
+
+cd $IMAGE_DIR;
+
+for file in .* *; do
+  if [[ $file == *.JPG ]]
+     [[ $file == *.PNG ]] || 
+     [[ $file == *.jpg ]] ||
+     [[ $file == *.JPG ]] ||
+     [[ $file == *.gif ]]; then
+     echo $file
+     convert $IMAGE_DIR/$file -resize 300 $IMAGE_DIR/$file
+  fi
+done
